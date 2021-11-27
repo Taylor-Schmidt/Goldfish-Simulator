@@ -1,14 +1,19 @@
 import { Engine, Loader } from "excalibur";
-import { Player } from "./player";
+import { Goldfish } from "./goldfish";
 import { Resources } from "./resources";
 
 class Game extends Engine {
+  constructor(){
+    super({
+      width: 800,
+      height: 800,
+    })
+  }
   initialize() {
-    const player = new Player();
-    this.add(player);
-
+    const goldfish = new Goldfish();
+    this.add(goldfish);
     const loader = new Loader();
-    loader.addResource(Resources.Sword);
+    loader.addResource(Resources.Goldfish);
     this.start(loader);
   }
 }

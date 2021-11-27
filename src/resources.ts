@@ -1,8 +1,8 @@
 import { Resource, Texture } from "excalibur";
-import sword from "./images/sword.png";
+import goldfish from "./images/goldfish.png"
 
 let Resources = {
-  Sword: new Texture(sword),
+  Goldfish: new Texture(goldfish),
 };
 
 export { Resources };
