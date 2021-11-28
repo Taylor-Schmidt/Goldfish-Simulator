@@ -1,7 +1,7 @@
 import * as ex from "excalibur";
 import { Resources } from "./resources";
 export class Goldfish extends ex.Actor{
-    private newPos = new ex.Vector(0,0);
+    private newPos = new ex.Vector(20,20);
     private isMoving = false; 
     private deciding = 0;
     private startPosition: ex.Vector;
@@ -36,7 +36,7 @@ export class Goldfish extends ex.Actor{
     onPostUpdate(engine: ex.Engine){
 
        
-            this.deciding = Math.floor(Math.random() * 500)
+            this.deciding = Math.floor(Math.random() * 1000)
             if(this.deciding === 1){
                 console.log("Decided!")
                 console.log(`pos: ${this.pos}`)
@@ -46,7 +46,9 @@ export class Goldfish extends ex.Actor{
                 this.halfWay.x = this.startPosition.x + (this.newPos.x - this.startPosition.x)/2;
                 this.halfWay.y = this.startPosition.y + (this.newPos.y - this.startPosition.y)/2;
                 this.xdif=(this.newPos.x - this.startPosition.x);
+                console.log(`xdif: ${this.xdif}`)
                 this.ydif=(this.newPos.y - this.startPosition.y);
+                console.log(`ydif: ${this.ydif}`)
                 console.log(`halfway: ${this.halfWay}`);
             }
             this.swim();
