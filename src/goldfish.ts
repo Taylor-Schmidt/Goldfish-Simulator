@@ -1,7 +1,9 @@
 import * as ex from "excalibur";
 import { Resources } from "./resources";
+import Config from "./config";
+
 export class Goldfish extends ex.Actor{
-    private newPos = new ex.Vector(20,20);
+    private newPos = new ex.Vector(200,200);
     private isMoving = false; 
     private deciding = 0;
     private startPosition: ex.Vector;
@@ -40,11 +42,11 @@ export class Goldfish extends ex.Actor{
             if(this.deciding === 1){
                 console.log("Decided!")
                 console.log(`pos: ${this.pos}`)
-                this.newPos.x = Math.floor(Math.random() * (800 - this.width/2) + (this.width/2)); 
-                this.newPos.y = Math.floor(Math.random() * (600 - this.height/2) + (this.height/2));
+                this.newPos.x = Math.floor(Math.random() * (Config.GameWidth - this.width/2) + (this.width/2)); 
+                this.newPos.y = Math.floor(Math.random() * (Config.GameHeight - this.height/2) + (this.height/2));
                 console.log(`newPossition: ${this.newPos}`);
-                this.halfWay.x = this.startPosition.x + (this.newPos.x - this.startPosition.x)/2;
-                this.halfWay.y = this.startPosition.y + (this.newPos.y - this.startPosition.y)/2;
+                this.halfWay.x = (this.newPos.x + this.startPosition.x)/2;
+                this.halfWay.y = (this.newPos.y + this.startPosition.y)/2;
                 this.xdif=(this.newPos.x - this.startPosition.x);
                 console.log(`xdif: ${this.xdif}`)
                 this.ydif=(this.newPos.y - this.startPosition.y);
@@ -56,20 +58,19 @@ export class Goldfish extends ex.Actor{
 
         //collide left side
         if(this.pos.x < this.width /2){
-            this.vel.x *= -1;
+            this.vel.x *= -0.9;
+        }
+        //collide top 
+        if(this.pos.y < this.height/2){
+            this.vel.y *= -0.9;
         }
         //collide right side
-        if(this.pos.y < this.height/2){
-            this.vel.y *= -1;
-        }
-        //collide top
-        if (this.pos.x + this.width / 2 > 800){
-            this.vel.x *= -1;
-
+        if (this.pos.x + this.width / 2 > Config.GameWidth){
+            this.vel.x *= -0.9;
         }
         //collide bottom
-        if (this.pos.y + this.height / 2 > 600){
-            this.vel.y *= -1;
+        if (this.pos.y + this.height / 2 > Config.GameHeight){
+            this.vel.y *= -0.9;
         }
 
     }
@@ -83,45 +84,45 @@ export class Goldfish extends ex.Actor{
             this.startPosition = this.pos;
             return;
         }
-
-        //moving into positive x
-        if(this.xdif > 0)
-        {
-            if(this.pos.x < this.halfWay.x){
-                this.vel.x += 0.1;
-            }
-            else{
-                this.vel.x -= 0.1;
-            }
-        }
-        //moving into negative x
-        else{           
-            if(this.pos.x > this.halfWay.x){
-                this.vel.x += 0.1;
-            }
-            else{
-                this.vel.x -= 0.1;
-            }
-        }
-        //moving into positive y
-        if(this.ydif > 0)
-        {
-            if(this.pos.y < this.halfWay.y){
-                this.vel.y += 0.1;
-            }
-            else{
-                this.vel.y -= 0.1;
-            }
-        }
-        //moving into negative y
-        else{           
-            if(this.pos.y > this.halfWay.y){
-                this.vel.y += 0.1;
-            }
-            else{
-                this.vel.y -= 0.1;
-            }
-        }
+         //moving into positive x
+         if(this.xdif < 0)
+         {
+             if(this.pos.x < this.halfWay.x){
+                 this.vel.x += 0.1;
+             }
+             else{
+                 this.vel.x -= 0.1;
+             }
+         }
+         //moving into negative x
+         else{           
+             if(this.pos.x > this.halfWay.x){
+                 this.vel.x += 0.1;
+             }
+             else{
+                 this.vel.x -= 0.1;
+             }
+         }
+         //moving into positive y
+         if(this.ydif < 0)
+         {
+             if(this.pos.y < this.halfWay.y){
+                 this.vel.y += 0.1;
+             }
+             else{
+                 this.vel.y -= 0.1;
+             }
+         }
+         //moving into negative y
+         else{           
+             if(this.pos.y > this.halfWay.y){
+                 this.vel.y += 0.1;
+             }
+             else{
+                 this.vel.y -= 0.1;
+             }
+         }
+       
         
     }
 

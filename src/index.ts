@@ -1,12 +1,14 @@
 import { Engine, Loader } from "excalibur";
 import { Goldfish } from "./goldfish";
 import { Resources } from "./resources";
+import Config from "./config";
 
 class Game extends Engine {
   constructor(){
     super({
-      width: 800,
-      height: 600,
+      width: Config.GameWidth,
+      height: Config.GameHeight,
+      canvasElementId: 'game',
     })
   }
   initialize() {
