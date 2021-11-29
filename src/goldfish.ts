@@ -4,7 +4,6 @@ import Config from "./config";
 
 export class Goldfish extends ex.Actor{
     private newPos = new ex.Vector(200,200);
-    private isMoving = false; 
     private deciding = 0;
     private startPosition: ex.Vector;
     private halfWay = new ex.Vector(0,0)
@@ -23,22 +22,28 @@ export class Goldfish extends ex.Actor{
     }
     
     onInitialize(engine: ex.Engine){
-        const fish = Resources.Goldfish.asSprite()
+        const fishLeft = Resources.goldfishLeft.asSprite()
+        const fishRight = Resources.goldfishRight.asSprite()
         let r = Math.floor(Math.random() * 255);
         let g = Math.floor(Math.random() * 255);
         let b = Math.floor(Math.random() * 255);
-        fish.colorize(new ex.Color(r,g,b,100));
-        this.addDrawing("right", fish );
-        console.log(`anchor: ${this.anchor}`);
-        
+        fishLeft.colorize(new ex.Color(r,g,b,100));
+        fishRight.colorize(new ex.Color(r,g,b,100));
+        this.addDrawing("left", fishLeft );
+        this.addDrawing("right", fishRight );       
     }
 
     private onPreCollision(evt: ex.PreCollisionEvent){
 
     }
     onPostUpdate(engine: ex.Engine){
-
-       
+        if(this.vel.x > 0)
+        {
+            this.setDrawing("right");
+        }
+        else{
+            this.setDrawing("left");
+        }
         this.randomMove();
         this.checkCollision();
         this.swim();
@@ -81,14 +86,7 @@ export class Goldfish extends ex.Actor{
     }
     private swim(){
         console.log("swimming");
-        console.log(`vel: ${this.vel}`);
-        if(Math.ceil(this.pos.x) === this.newPos.x && Math.ceil(this.pos.y) === this.newPos.y)
-        {
-            this.vel = new ex.Vector(0,0);
-            this.isMoving = false;
-            this.startPosition = this.pos;
-            return;
-        }
+        //console.log(`vel: ${this.vel}`);
          //moving into positive x
          if(this.xdif > 0)
          {

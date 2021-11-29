@@ -1,8 +1,10 @@
 import { Resource, Texture } from "excalibur";
 import goldfishLeft from "./images/goldfish-left.png"
+import goldfishRight from "./images/goldfish-right.png"
 
 let Resources = {
-  Goldfish: new Texture(goldfishLeft),
+  goldfishLeft: new Texture(goldfishLeft),
+  goldfishRight: new Texture(goldfishRight),
 };
 
 export { Resources };
