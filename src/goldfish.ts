@@ -16,7 +16,7 @@ export class Goldfish extends ex.Actor{
             acc: new ex.Vector(0,0),
             width: 200,
             height: 177,
-        })
+        });
         this.startPosition = this.pos;
         this.body.collider.type = ex.CollisionType.Passive;
     }
@@ -24,11 +24,9 @@ export class Goldfish extends ex.Actor{
     onInitialize(engine: ex.Engine){
         const fishLeft = Resources.goldfishLeft.asSprite()
         const fishRight = Resources.goldfishRight.asSprite()
-        let r = Math.floor(Math.random() * 255);
-        let g = Math.floor(Math.random() * 255);
-        let b = Math.floor(Math.random() * 255);
-        fishLeft.colorize(new ex.Color(r,g,b,100));
-        fishRight.colorize(new ex.Color(r,g,b,100));
+        const color = this.setRandomColor();
+        fishLeft.colorize(color);
+        fishRight.colorize(color);
         this.addDrawing("left", fishLeft );
         this.addDrawing("right", fishRight );       
     }
@@ -70,23 +68,25 @@ export class Goldfish extends ex.Actor{
     private randomMove(){
         this.deciding = Math.floor(Math.random() * 1000)
         if(this.deciding === 1){
-            console.log("Decided!")
-            console.log(`pos: ${this.pos}`)
             this.newPos.x = Math.floor(Math.random() * (Config.GameWidth - this.width/2) + (this.width/2)); 
             this.newPos.y = Math.floor(Math.random() * (Config.GameHeight - this.height/2) + (this.height/2));
-            console.log(`newPossition: ${this.newPos}`);
             this.halfWay.x = (this.newPos.x + this.startPosition.x)/2;
             this.halfWay.y = (this.newPos.y + this.startPosition.y)/2;
             this.xdif=(this.newPos.x - this.startPosition.x);
-            console.log(`xdif: ${this.xdif}`)
             this.ydif=(this.newPos.y - this.startPosition.y);
-            console.log(`ydif: ${this.ydif}`)
-            console.log(`halfway: ${this.halfWay}`);
         }  
     }
+    private randomColorValue(){
+        return Math.floor(Math.random() * 255);
+    }
+    private setRandomColor(){
+        let r = this.randomColorValue();
+        let g = this.randomColorValue();
+        let b = this.randomColorValue();
+
+        return new ex.Color(r,g,b,100);
+    }
     private swim(){
-        console.log("swimming");
-        //console.log(`vel: ${this.vel}`);
          //moving into positive x
          if(this.xdif > 0)
          {

@@ -2,6 +2,7 @@ import { Color, Engine, Loader } from "excalibur";
 import { Goldfish } from "./goldfish";
 import { Resources } from "./resources";
 import Config from "./config";
+import { Plant } from "./plant";
 
 class Game extends Engine {
   constructor(){
@@ -13,11 +14,14 @@ class Game extends Engine {
     })
   }
   initialize() {
+    const plant = new Plant(200);
     const goldfish = new Goldfish();
     this.add(goldfish);
+    this.add(plant);
     const loader = new Loader();
     loader.addResource(Resources.goldfishLeft);
     loader.addResource(Resources.goldfishRight);
+    loader.addResource(Resources.plant);
     this.start(loader);
   }
 }
