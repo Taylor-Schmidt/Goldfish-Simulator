@@ -31,17 +31,8 @@ export class Goldfish extends ex.Actor{
         this.addDrawing("right", fishRight );       
     }
 
-    private onPreCollision(evt: ex.PreCollisionEvent){
-
-    }
     onPostUpdate(engine: ex.Engine){
-        if(this.vel.x > 0)
-        {
-            this.setDrawing("right");
-        }
-        else{
-            this.setDrawing("left");
-        }
+        this.setFishDirection();
         this.randomMove();
         this.checkCollision();
         this.swim();
@@ -68,16 +59,33 @@ export class Goldfish extends ex.Actor{
     private randomMove(){
         this.deciding = Math.floor(Math.random() * 1000)
         if(this.deciding === 1){
-            this.newPos.x = Math.floor(Math.random() * (Config.GameWidth - this.width/2) + (this.width/2)); 
-            this.newPos.y = Math.floor(Math.random() * (Config.GameHeight - this.height/2) + (this.height/2));
-            this.halfWay.x = (this.newPos.x + this.startPosition.x)/2;
-            this.halfWay.y = (this.newPos.y + this.startPosition.y)/2;
+            this.newPos = this.setNewPos();
+            this.halfWay = this.setHalfway();
             this.xdif=(this.newPos.x - this.startPosition.x);
             this.ydif=(this.newPos.y - this.startPosition.y);
         }  
     }
     private randomColorValue(){
         return Math.floor(Math.random() * 255);
+    }
+    private setFishDirection(){
+        if(this.vel.x > 0)
+        {
+            this.setDrawing("right");
+        }
+        else{
+            this.setDrawing("left");
+        }
+    }
+    private setHalfway(){
+        let x = (this.newPos.x + this.startPosition.x)/2;
+        let y = (this.newPos.y + this.startPosition.y)/2;
+        return new ex.Vector(x,y);
+    }
+    private setNewPos(){
+        let x = Math.floor(Math.random() * (Config.GameWidth - this.width/2) + (this.width/2));
+        let y = Math.floor(Math.random() * (Config.GameHeight - this.height/2) + (this.height/2));
+        return new ex.Vector(x,y);
     }
     private setRandomColor(){
         let r = this.randomColorValue();

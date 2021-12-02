@@ -46,6 +46,10 @@ h1{
     background-color: blanchedalmond;
     width: 25rem
 }
+.logo{
+    padding-left: 1.5rem;
+    margin: 0;
+}
 .name{
 
     text-align: center;
@@ -54,10 +58,6 @@ h1{
     background-color: #2d2c29;
     margin-bottom: 4rem;
     border-radius: 2rem;
-}
-.logo{
-    padding-left: 1.5rem;
-    margin: 0;
 }
 
 #game{
