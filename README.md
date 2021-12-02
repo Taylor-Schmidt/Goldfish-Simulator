@@ -1,9 +1,10 @@
-# Excalibur TypeScript & Parcel template
+# Goldfish Simulator
+Web application made with [exchttps://nodejs.org/en/alibur.js](https://excaliburjs.com/).  
+## Running Locally 
 
-## Getting Started
+- use [nodejs](https://nodejs.org/en/) and [npm](https://www.npmjs.com/)
+- Run `npm install` to install dependencies
+- Run `npm start` to start the server!
 
-1. [Generate a repository](https://github.com/excaliburjs/template-ts-parcel/generate) from this template
-2. Modify the `package.json` with your own details
-3. Run `npm install` to install dependencies
-4. Run `npm start` to start the Parcel server!
-5. Have fun!
+
+
