@@ -1,5 +1,5 @@
 {
-  "name": "template-ts-parcel",
+  "name": "goldfish-simulator",
   "version": "1.0.0",
   "private": true,
   "description": "",
@@ -7,20 +7,19 @@
   "type": "module",
   "scripts": {
     "start": "parcel index.html --no-autoinstall",
-    "test": "npm run build && node ./test/test.js",
     "typecheck": "tsc -p . --noEmit",
     "build": "parcel build index.html"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/excaliburjs/template-ts-parcel.git"
+    "url": "git+https://github.com/Taylor-Schmidt/Goldfish-Simulator.git"
   },
-  "author": "",
-  "license": "BSD-2",
   "bugs": {
-    "url": "https://github.com/excaliburjs/template-ts-parcel/issues"
+    "url": "https://github.com/Taylor-Schmidt/Goldfish-Simulator/issues"
   },
-  "homepage": "https://github.com/excaliburjs/template-ts-parcel#readme",
+  "author": "Taylor Schmidt",
+  "license": "BSD-2",
+  "homepage": "https://github.com/Taylor-Schmidt/Goldfish-Simulator#readme",
   "assetsPath": "static/",
   "devDependencies": {
     "husky": "^4.2.5",
